@@ -224,7 +224,7 @@
       @endforeach
     </table>
 
-    {{ $inscricoes->links() }}
+    {{ $homologadas->links() }}
     </div><!-- end tabela -->
   @endif
 </div><!-- end container-->
