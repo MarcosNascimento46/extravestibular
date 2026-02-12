@@ -491,8 +491,8 @@ class EditalController extends Controller{
                                         'editalId'   => $request->editalId]);
         }
         if($request->tipo == 'homologarRecursosInscricao'){
-          $recursosDisponiveis = Recurso::where('editalId', $request->editalId)
-                                          ->where([['homologado', 'nao'], ['tipo', 'classificacao']])->paginate(50);
+          $recursosDisponiveis = Recurso::where([['editalId', $request->editalId], ['tipo', 'classificacao'], ['homologado', 'aprovado']])
+                                              ->orWhere([['editalId', $request->editalId], ['tipo', 'classificacao'], ['homologado', 'rejeitado']])->paginate(50);
           return view('listaRecursos', ['titulo_da_pagina' => 'Recursos ao resultado para avaliação de inscrições',
                                         'recursos' => $recursosDisponiveis,
                                         'mytime'            => $mytime,
